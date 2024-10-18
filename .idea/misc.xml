@@ -8,6 +8,8 @@
         <option value="$USER_HOME$/Medical-Appointment-Scheduling-System/Doctor-service/pom.xml" />
         <option value="$USER_HOME$/Medical-Appointment-Scheduling-System/gateway-service/pom.xml" />
         <option value="$USER_HOME$/Medical-Appointment-Scheduling-System/Patient-service/pom.xml" />
+        <option value="$PROJECT_DIR$/config-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Patient-service/pom.xml" />
       </list>
     </option>
   </component>
