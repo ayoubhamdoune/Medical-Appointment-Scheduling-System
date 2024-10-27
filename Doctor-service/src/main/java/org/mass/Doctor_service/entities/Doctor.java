@@ -23,7 +23,7 @@ public class Doctor {
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<Availability> availabilities;
 
-    // Nouveau constructeur pour inclure les disponibilités
+    // Nouveau constructeur pour inclure les disponibilités..
     public Doctor(Long id, String firstName, String lastName, String specialty, String email, String phoneNumber, String address, List<Availability> availabilities) {
         this.id = id;
         this.firstName = firstName;
