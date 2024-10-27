@@ -18,7 +18,7 @@ public class AppointmentService {
     @Autowired
     private RestTemplate restTemplate; // Pour communiquer avec le Service de Gestion des Médecins
 
-    public Appointment scheduleAppointment(Long doctorId, Long patientId, LocalDateTime date) {
+   /*public Appointment scheduleAppointment(Long doctorId, Long patientId, LocalDateTime date) {
         // Vérifie la disponibilité du médecin via le service des médecins
         String url = "http://DOCTOR_SERVICE/api/doctors/" + doctorId + "/availabilities?date=" + date;
         Boolean isAvailable = restTemplate.getForObject(url, Boolean.class);
@@ -30,5 +30,5 @@ public class AppointmentService {
         } else {
             throw new RuntimeException("Le médecin n'est pas disponible à cette date");
         }
-    }
+    }*/
 }
