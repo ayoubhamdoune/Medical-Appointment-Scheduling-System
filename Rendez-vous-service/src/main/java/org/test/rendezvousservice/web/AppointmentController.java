@@ -16,10 +16,10 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @PostMapping("/schedule")
-    public Appointment scheduleAppointment(@RequestParam Long doctorId,
+   // @PostMapping("/schedule")
+    /*public Appointment scheduleAppointment(@RequestParam Long doctorId,
                                            @RequestParam Long patientId,
                                            @RequestParam("date") LocalDateTime date) {
         return appointmentService.scheduleAppointment(doctorId, patientId, date);
-    }
+    }*/
 }
