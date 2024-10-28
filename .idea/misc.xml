@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/config-service/pom.xml" />
         <option value="$PROJECT_DIR$/Rendez-vous-service/pom.xml" />
         <option value="$PROJECT_DIR$/Patient-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
       </list>
     </option>
   </component>
