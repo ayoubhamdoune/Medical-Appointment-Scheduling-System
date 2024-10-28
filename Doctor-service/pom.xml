@@ -8,11 +8,11 @@
 		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.test</groupId>
-	<artifactId>demoDepend</artifactId>
+	<groupId>org.mass</groupId>
+	<artifactId>Doctor-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demoDepend</name>
-	<description>demoDepend</description>
+	<name>Doctor-service</name>
+	<description>This service manages doctor information (availability, specialties, etc.).</description>
 	<url/>
 	<licenses>
 		<license/>
