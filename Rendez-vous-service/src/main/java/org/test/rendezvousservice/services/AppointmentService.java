@@ -2,6 +2,8 @@ package org.test.rendezvousservice.services;
 
 
 import org.test.rendezvousservice.entities.Appointment;
+import org.test.rendezvousservice.entities.Availability;
+import org.test.rendezvousservice.openfeign.DoctorRestClient;
 import org.test.rendezvousservice.repositories.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,23 +14,30 @@ import java.util.List;
 
 @Service
 public class AppointmentService {
-    @Autowired
-    private AppointmentRepository appointmentRepository;
 
-    @Autowired
-    private RestTemplate restTemplate; // Pour communiquer avec le Service de Gestion des Médecins
+    private final DoctorRestClient doctorRestClient;
+    private final AppointmentRepository appointmentRepository;
 
-   /*public Appointment scheduleAppointment(Long doctorId, Long patientId, LocalDateTime date) {
-        // Vérifie la disponibilité du médecin via le service des médecins
-        String url = "http://DOCTOR_SERVICE/api/doctors/" + doctorId + "/availabilities?date=" + date;
-        Boolean isAvailable = restTemplate.getForObject(url, Boolean.class);
+    public AppointmentService(DoctorRestClient doctorRestClient, AppointmentRepository appointmentRepository) {
+        this.doctorRestClient = doctorRestClient;
+        this.appointmentRepository = appointmentRepository;
+    }
 
-        if (Boolean.TRUE.equals(isAvailable)) {
-            // Si disponible, créer un rendez-vous
-            Appointment appointment = new Appointment(null, doctorId, patientId, date, "Scheduled");
-            return appointmentRepository.save(appointment);
-        } else {
-            throw new RuntimeException("Le médecin n'est pas disponible à cette date");
+    public Appointment bookAppointment(Long patientId, Long doctorId, LocalDateTime appointmentDate) {
+        // Fetch doctor availability
+        List<Availability> availabilities = doctorRestClient.getAvailabilities(doctorId);
+
+        // Check if the requested appointmentDate is within an available slot
+        for (Availability availability : availabilities) {
+            if (appointmentDate.isAfter(availability.getStartTime()) && appointmentDate.isBefore(availability.getEndTime())) {
+                // Book the appointment
+                Appointment appointment = new Appointment();
+                appointment.setPatientId(patientId);
+                appointment.setDoctorId(doctorId);
+                appointment.setAppointmentDate(appointmentDate);
+                return appointmentRepository.save(appointment);
+            }
         }
-    }*/
+        throw new RuntimeException("No available slots for the requested time.");
+    }
 }

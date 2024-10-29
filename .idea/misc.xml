@@ -12,8 +12,8 @@
         <option value="$PROJECT_DIR$/Rendez-vous-service/pom.xml" />
         <option value="$PROJECT_DIR$/Patient-service/pom.xml" />
         <option value="$PROJECT_DIR$/Notification-service/pom.xml" />
-        <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/Doctor-service/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-service/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-discovery/pom.xml" />
       </list>
     </option>

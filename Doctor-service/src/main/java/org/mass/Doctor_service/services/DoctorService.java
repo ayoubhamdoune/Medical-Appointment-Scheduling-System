@@ -29,7 +29,7 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    public Doctor updateDoctor(Long id, Doctor updatedDoctor) {
+   /* public Doctor updateDoctor(Long id, Doctor updatedDoctor) {
         Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new RuntimeException("Doctor not found"));
         doctor.setFirstName(updatedDoctor.getFirstName());
         doctor.setLastName(updatedDoctor.getLastName());
@@ -38,7 +38,33 @@ public class DoctorService {
         doctor.setPhoneNumber(updatedDoctor.getPhoneNumber());
         doctor.setAddress(updatedDoctor.getAddress());
         return doctorRepository.save(doctor);
-    }
+    }*/
+   public Doctor updateDoctor(Long id, Doctor updatedDoctor) {
+       Doctor doctor = doctorRepository.findById(id).orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+       // Vérifiez chaque champ et mettez à jour uniquement s'il n'est pas null
+       if (updatedDoctor.getFirstName() != null) {
+           doctor.setFirstName(updatedDoctor.getFirstName());
+       }
+       if (updatedDoctor.getLastName() != null) {
+           doctor.setLastName(updatedDoctor.getLastName());
+       }
+       if (updatedDoctor.getSpecialty() != null) {
+           doctor.setSpecialty(updatedDoctor.getSpecialty());
+       }
+       if (updatedDoctor.getEmail() != null) {
+           doctor.setEmail(updatedDoctor.getEmail());
+       }
+       if (updatedDoctor.getPhoneNumber() != null) {
+           doctor.setPhoneNumber(updatedDoctor.getPhoneNumber());
+       }
+       if (updatedDoctor.getAddress() != null) {
+           doctor.setAddress(updatedDoctor.getAddress());
+       }
+
+       return doctorRepository.save(doctor);
+   }
+
 
     public void deleteDoctor(Long id) {
         doctorRepository.deleteById(id);

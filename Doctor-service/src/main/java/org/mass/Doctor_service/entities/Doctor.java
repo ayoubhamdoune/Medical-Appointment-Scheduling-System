@@ -20,7 +20,7 @@ public class Doctor {
     private String phoneNumber;
     private String address;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Availability> availabilities;
 
     // Nouveau constructeur pour inclure les disponibilités..

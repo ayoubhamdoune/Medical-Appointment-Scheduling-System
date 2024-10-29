@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/doctors")
+@RequestMapping("/api/doctor")
 public class DoctorRestAPI {
     private final DoctorService doctorService;
 
@@ -20,13 +20,14 @@ public class DoctorRestAPI {
         this.doctorService = doctorService;
     }
 
-    @PostMapping
-    public ResponseEntity<Doctor> saveDoctor(@RequestBody Doctor doctor) {
-        Doctor savedDoctor = doctorService.saveDoctor(doctor);
-        return ResponseEntity.ok(savedDoctor);
+    @PostMapping("/saveDoct")
+    public Doctor saveDoctor(@RequestBody Doctor doctor) {
+        //Doctor savedDoctor = doctorService.saveDoctor(doctor);
+        return doctorService.saveDoctor(doctor) ;
+        //ResponseEntity.ok(savedDoctor);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateDoct/{id}")
     public ResponseEntity<Doctor> updateDoctor(@PathVariable Long id, @RequestBody Doctor doctor) {
         Doctor updatedDoctor = doctorService.updateDoctor(id, doctor);
         return ResponseEntity.ok(updatedDoctor);
@@ -38,7 +39,7 @@ public class DoctorRestAPI {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<List<Doctor>> getAllDoctors() {
         List<Doctor> doctors = doctorService.getAllDoctors();
         return ResponseEntity.ok(doctors);
