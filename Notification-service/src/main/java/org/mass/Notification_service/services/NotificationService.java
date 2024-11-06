@@ -15,7 +15,10 @@ public class NotificationService {
 
     @Autowired
     private NotificationRepository notificationRepository;
+    // Method to retrieve a notification by its ID
 
+
+    // Method to create a new notification
     public Notification createNotification(Long recipientId, String message) {
         Notification notification = new Notification();
         notification.setRecipientId(recipientId);
@@ -24,6 +27,9 @@ public class NotificationService {
         notification.setSentAt(null);
         return notificationRepository.save(notification);
     }
+
+
+
 
     public Notification sendNotification(Long notificationId) {
         Optional<Notification> optionalNotification = notificationRepository.findById(notificationId);
@@ -46,6 +52,10 @@ public class NotificationService {
         } else {
             throw new RuntimeException("Notification non trouvée");
         }
+    }
+    public Notification getNotificationById(Long id) {
+        return notificationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Notification not found"));
     }
 }
 

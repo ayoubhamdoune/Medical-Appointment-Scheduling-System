@@ -12,6 +12,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import java.time.LocalDateTime;
 
+import org.test.rendezvousservice.web.AppointmentController;
+
 
 @SpringBootApplication
 @EnableFeignClients
@@ -19,6 +21,8 @@ public class RendezVousServiceApplication implements CommandLineRunner {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+
 
     public static void main(String[] args) {
         SpringApplication.run(RendezVousServiceApplication.class, args);
@@ -38,8 +42,12 @@ public class RendezVousServiceApplication implements CommandLineRunner {
         appointment.setAppointmentDate(LocalDateTime.of(2024, 10, 26, 10, 0)); // Date et heure du rendez-vous
         appointment.setStatus("Scheduled");
 
+
         // Sauvegarder le rendez-vous dans la base de données
         appointmentRepository.save(appointment);
         System.out.println("Rendez-vous inséré : " + appointment);
+
+        System.out.println(appointment.toString());
+
     }
 }
