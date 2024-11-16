@@ -1,18 +1,19 @@
-package org.mass.Notification_service.entities;
+package org.test.rendezvousservice.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.mass.Notification_service.model.Patient;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,11 @@ public class Notification {
     private String message;  // Contenu de la notification
     private String status;  // Statut de la notification (par ex. "Envoyée", "Échouée")
     private LocalDateTime sentAt;  // Date et heure d'envoi
-    @Transient
-    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "Appointment_id")
+    private Appointment appointment;
+
+
 
 }

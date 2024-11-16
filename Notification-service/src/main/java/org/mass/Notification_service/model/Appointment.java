@@ -1,15 +1,15 @@
-package org.test.rendezvousservice.entities;
+package org.mass.Notification_service.model;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,13 +24,12 @@ public class Appointment {
     private String status;// Par exemple : "Scheduled", "Completed", "Cancelled"
     private String cause;
 
-    @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL)
-    private List<Notification> notification;
 
     @Transient
     private Doctor doctor;
     @Transient
     private Patient patient;
+
 
 
 }
