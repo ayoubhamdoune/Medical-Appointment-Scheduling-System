@@ -18,7 +18,7 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable())
-                .authorizeHttpRequests((requests) -> requests.requestMatchers("/patients/**","/eureka/**","/**").authenticated()
+                .authorizeHttpRequests((requests) -> requests.requestMatchers("/patients/**","/eureka/**","/**").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth -> oauth.jwt(Customizer.withDefaults()))
                 .build();

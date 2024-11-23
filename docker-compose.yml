@@ -23,10 +23,45 @@ services:
       interval: 10s
       retries: 4
     environment:
-      - DISCOVERY_SERVICE_URL=http://eureka-discovery-service:8761/eureka
+      - DISCOVERY_SERVICE_URL= http://eureka-discovery-service:8761/eureka
     depends_on:
       eureka-discovery-service:
         condition: service_healthy
+
+  patient-service:
+    build: ./Patient-service
+    container_name: patient-service
+    ports:
+      - '8083:8083'
+    expose:
+      - '8083'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8083/actuator/health" ]
+      interval: 10s
+      retries: 4
+    environment:
+      - DISCOVERY_SERVICE_URL= http://eureka-discovery-service:8761/eureka
+    depends_on:
+      eureka-discovery-service:
+        condition: service_healthy
+
+  gateway-service:
+    build: ./Gateway-service
+    container_name: gateway-service
+    ports:
+      - '8089:8089'
+    expose:
+      - '8089'
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8089/actuator/health" ]
+      interval: 10s
+      retries: 4
+    environment:
+      - DISCOVERY_SERVICE_URL= http://eureka-discovery-service:8761/eureka
+    depends_on:
+      eureka-discovery-service:
+        condition: service_healthy
+
 
   rendez-vous-service:
     build: ./Rendez-vous-service
@@ -39,6 +74,6 @@ services:
       doctor-service:
         condition: service_healthy
 
-#networks:
-#  app-network:
-#    external: true
+networks:
+  app-network:
+    external: true
